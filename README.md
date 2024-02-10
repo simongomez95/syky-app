@@ -61,3 +61,13 @@ Deletes an event by id.
 Returns a list of all categories.
 - GET /planets
 Returns a list of all planets.
+
+## Architecture
+The backend app is built with NestJS,
+connected to a Postgres database.
+
+The frontend app is built with React and NextJS.
+
+Live deployment is done with Vercel for the frontend 
+and Heroku for the backend.
+The live database is deployed in a Postgres instance in Vercel.
