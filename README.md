@@ -68,6 +68,7 @@ connected to a Postgres database.
 
 The frontend app is built with React and NextJS.
 
-Live deployment is done with Vercel for the frontend 
-and Heroku for the backend.
+Live deployment is done with Vercel for the frontend at https://syky-app-frontend.vercel.app/
+and Heroku for the backend at https://syky-app-af5e9d2426db.herokuapp.com/.
 The live database is deployed in a Postgres instance in Vercel.
+

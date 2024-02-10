@@ -25,6 +25,7 @@ import { PlanetsModule } from './planets/planets.module';
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
       synchronize: true,
+      ssl: process.env.ENV == 'prod',
     }),
     EventsModule,
     CategoriesModule,
