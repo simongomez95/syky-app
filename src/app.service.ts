@@ -1,9 +1,9 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EventEntity } from './entities/event.entity';
+import { EventEntity } from './events/entities/event.entity';
 import { Repository } from 'typeorm';
-import { CategoryEntity } from './entities/category.entity';
-import { PlanetEntity } from './entities/planet.entity';
+import { CategoryEntity } from './categories/entities/category.entity';
+import { PlanetEntity } from './planets/entities/planet.entity';
 
 @Injectable()
 export class AppService implements OnApplicationBootstrap {
@@ -63,11 +63,8 @@ export class AppService implements OnApplicationBootstrap {
       ];
 
       await this.eventsRepository.save(events);
-    } catch (error) {
-      console.log(
-        'Error seeding the database, probably already seeded:',
-        error,
-      );
+    } catch (QueryFailedError) {
+      console.log('Database already seeded.');
     }
   }
 }

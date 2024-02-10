@@ -6,9 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { EventsModule } from './events/events.module';
 import { ConfigModule } from '@nestjs/config';
-import { EventEntity } from './entities/event.entity';
-import { CategoryEntity } from './entities/category.entity';
-import { PlanetEntity } from './entities/planet.entity';
+import { EventEntity } from './events/entities/event.entity';
+import { CategoryEntity } from './categories/entities/category.entity';
+import { PlanetEntity } from './planets/entities/planet.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { PlanetsModule } from './planets/planets.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { PlanetEntity } from './entities/planet.entity';
       synchronize: true,
     }),
     EventsModule,
+    CategoriesModule,
+    PlanetsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

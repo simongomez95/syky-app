@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { EventEntity } from '../entities/event.entity';
+import { EventEntity } from './entities/event.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateEventDto } from './events.dto';
-import { CategoryEntity } from '../entities/category.entity';
-import { PlanetEntity } from '../entities/planet.entity';
+import { CreateEventDto } from './dto/events.dto';
+import { CategoryEntity } from '../categories/entities/category.entity';
+import { PlanetEntity } from '../planets/entities/planet.entity';
 
 @Injectable()
 export class EventsService {
@@ -34,6 +34,15 @@ export class EventsService {
       },
     });
     return events;
+  }
+
+  async getEvent(uuid: string): Promise<EventEntity> {
+    const event = await this.eventsRepository.findOne({
+      relations: ['category', 'planet'],
+      where: { uuid: uuid },
+    });
+    console.log(event);
+    return event;
   }
 
   async createEvent(createEventDto: CreateEventDto): Promise<EventEntity> {

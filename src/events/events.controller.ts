@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
-import { EventEntity } from '../entities/event.entity';
-import { CreateEventDto } from './events.dto';
+import { EventEntity } from './entities/event.entity';
+import { CreateEventDto } from './dto/events.dto';
 
 @Controller('events')
 export class EventsController {
@@ -15,8 +15,15 @@ export class EventsController {
     return await this.eventsService.getEvents(categoryId, planetId);
   }
 
+  @Get(':eventUuid')
+  async getEvent(@Param('eventUuid') eventUuid: string): Promise<EventEntity> {
+    return await this.eventsService.getEvent(eventUuid);
+  }
+
   @Post()
-  async createEvent(@Body() createEventDto: CreateEventDto) {
+  async createEvent(
+    @Body() createEventDto: CreateEventDto,
+  ): Promise<EventEntity> {
     return await this.eventsService.createEvent(createEventDto);
   }
 
@@ -24,7 +31,7 @@ export class EventsController {
   async updateEvent(
     @Param('eventUuid') eventUuid: string,
     @Body() createEventDto: CreateEventDto,
-  ) {
+  ): Promise<EventEntity> {
     return await this.eventsService.updateEvent(eventUuid, createEventDto);
   }
 }

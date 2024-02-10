@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { CategoryEntity } from './category.entity';
-import { PlanetEntity } from './planet.entity';
+import { CategoryEntity } from '../../categories/entities/category.entity';
+import { PlanetEntity } from '../../planets/entities/planet.entity';
 
 @Entity('events')
 export class EventEntity {
