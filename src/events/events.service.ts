@@ -119,4 +119,18 @@ export class EventsService {
 
     return await this.eventsRepository.findOne({ where: { uuid: eventUuid } });
   }
+
+  async deleteEvent(eventUuid: string): Promise<void> {
+    const event = await this.eventsRepository.findOne({
+      where: {
+        uuid: eventUuid,
+      },
+    });
+
+    if (!event) {
+      throw new NotFoundException('Event not found');
+    }
+
+    await this.eventsRepository.delete(event.uuid);
+  }
 }
